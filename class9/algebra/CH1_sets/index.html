@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galactic Defense</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <canvas id="star-canvas"></canvas>
+    <div id="damage-overlay"></div>
+    <div id="freeze-overlay">SYSTEM FROZEN</div>
+
+    <div id="main-wrapper">
+        
+        <div id="start-screen" class="screen">
+            <h1 class="game-title">GALACTIC DEFENSE</h1>
+            <p class="subtitle">// SYSTEM ONLINE //</p>
+            
+            <div class="btn-group">
+                <div class="level-wrapper">
+                    <button class="btn" onclick="startGame('easy')">Cadet</button>
+                    <div class="high-score-label" id="score-easy">BEST: 0</div>
+                </div>
+                
+                <div class="level-wrapper">
+                    <button class="btn" onclick="startGame('medium')">Pilot</button>
+                    <div class="high-score-label" id="score-medium">BEST: 0</div>
+                </div>
+                
+                <div class="level-wrapper">
+                    <button class="btn" onclick="startGame('hard')">Ace</button>
+                    <div class="high-score-label" id="score-hard">BEST: 0</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ui-layer" class="hidden">
+            
+            <div class="hud-top-row">
+                
+                <div class="hud-item coin-container">
+                    <svg class="icon-svg coin-icon" viewBox="0 0 24 24">
+                        <path fill="gold" d="M12,2A10,10 0 1,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 1,1 20,12A8,8 0 0,1 12,20Z"/>
+                        <path fill="#f0e68c" d="M12,6A6,6 0 1,0 18,12A6,6 0 0,0 12,6M12,16A4,4 0 1,1 16,12A4,4 0 0,1 12,16Z"/>
+                    </svg>
+                    <span id="coin-display">0</span>
+                </div>
+
+                <div id="question-box">INITIALIZING...</div>
+
+                <div class="hud-item perk-container">
+                    <div class="perk-btn disabled" id="btn-freeze" onclick="activateFreeze()">
+                        <svg class="icon-svg" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12,2L14,6L18,4L16,8L21,9L17,12L21,15L16,16L18,20L14,18L12,22L10,18L6,20L8,16L3,15L7,12L3,9L8,8L6,4L10,6L12,2Z" />
+                        </svg>
+                        <span class="perk-cost">10</span>
+                    </div>
+                    <div class="perk-btn disabled" id="btn-skip" onclick="activateSkip()">
+                        <svg class="icon-svg" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M4,5V19L11,12M18,5V19H20V5M11,5V19L18,12" />
+                        </svg>
+                        <span class="perk-cost">15</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="hud-bottom">
+                <div class="stat-card">
+                    <span class="stat-label">SHIELDS</span>
+                    <div id="lives-display">❤❤❤</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">INTEL</span>
+                    <span class="stat-value" id="score-display">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-area" class="hidden">
+            <div class="lane" id="lane-0"></div>
+            <div class="lane" id="lane-1"></div>
+            <div class="lane" id="lane-2"></div>
+            <div class="lane" id="lane-3"></div>
+            <div id="player-rocket">
+                <div class="rocket-body"></div>
+                <div class="rocket-engine"></div>
+            </div>
+        </div>
+
+        <div id="game-over-screen" class="screen hidden">
+            <h1 class="game-title" id="end-title">MISSION END</h1>
+            <p class="subtitle">SCORE: <span id="final-score">0</span></p>
+            <button class="btn" onclick="location.reload()">REBOOT SYSTEM</button>
+        </div>
+
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
